@@ -1,0 +1,110 @@
+{
+  "request_id": "baseline_500_50-Q04",
+  "question_id": "Q04",
+  "question": "What is Moshi and what problem does it address in real-time spoken dialogue?",
+  "configuration": "baseline_500_50",
+  "answer": "**Moshi** is a speech‑text foundation model designed for real‑time spoken dialogue.  \nIt is a multi‑stream, speech‑to‑speech Transformer that jointly models two streams of tokens—semantic and acoustic—hierarchically for both the user and the system. The architecture includes a text‑language‑model backbone (Helium), a neural audio codec distilled from a self‑supervised speech model (Mimi), and a streaming generation pipeline that produces time‑aligned text tokens when using Inner Monologue.\n\nThe model addresses several shortcomings of prior real‑time dialogue systems:\n\n| Problem in earlier systems | Moshi’s solution |\n|----------------------------|------------------|\n| Cascaded ASR → text generator → streaming TTS pipelines that are not truly full‑duplex and cannot handle overlapping speech | Moshi models user and system speech as **two separate audio token streams** and processes them jointly in a single Transformer, enabling true full‑duplex operation. |\n| Single token stream that mixes user and system utterances, making it hard to disambiguate overlapping speech | Moshi’s hierarchical generation of **semantic and acoustic tokens** for each stream keeps the two voices distinct and preserves linguistic and non‑linguistic cues. |\n| Lack of acoustic modeling (previous full‑duplex proof‑of‑concepts only modeled semantic tokens) | Moshi generates acoustic tokens alongside text and semantic tokens, allowing control over emotions, voices, and acoustic conditions. |\n| No benefit from large‑scale text‑language‑model",
+  "decision": "refused",
+  "validation": {
+    "passed": false,
+    "decision": "retry_or_refuse",
+    "issues": [
+      "missing_citations"
+    ],
+    "citation_count": 0,
+    "retrieved_source_count": 5,
+    "unsupported_citations": []
+  },
+  "model_metrics": {
+    "model": "openai/gpt-oss-20b",
+    "backend": "groq",
+    "response": "**Moshi** is a speech‑text foundation model designed for real‑time spoken dialogue.  \nIt is a multi‑stream, speech‑to‑speech Transformer that jointly models two streams of tokens—semantic and acoustic—hierarchically for both the user and the system. The architecture includes a text‑language‑model backbone (Helium), a neural audio codec distilled from a self‑supervised speech model (Mimi), and a streaming generation pipeline that produces time‑aligned text tokens when using Inner Monologue.\n\nThe model addresses several shortcomings of prior real‑time dialogue systems:\n\n| Problem in earlier systems | Moshi’s solution |\n|----------------------------|------------------|\n| Cascaded ASR → text generator → streaming TTS pipelines that are not truly full‑duplex and cannot handle overlapping speech | Moshi models user and system speech as **two separate audio token streams** and processes them jointly in a single Transformer, enabling true full‑duplex operation. |\n| Single token stream that mixes user and system utterances, making it hard to disambiguate overlapping speech | Moshi’s hierarchical generation of **semantic and acoustic tokens** for each stream keeps the two voices distinct and preserves linguistic and non‑linguistic cues. |\n| Lack of acoustic modeling (previous full‑duplex proof‑of‑concepts only modeled semantic tokens) | Moshi generates acoustic tokens alongside text and semantic tokens, allowing control over emotions, voices, and acoustic conditions. |\n| No benefit from large‑scale text‑language‑model",
+    "status": "ok",
+    "http_status": 200,
+    "first_token_ms": 1084.51,
+    "total_ms": 1417.55,
+    "tokens_in": 2524,
+    "tokens_out": 800,
+    "total_tokens": 3324,
+    "rate_limit_headers": {
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-remaining-requests": "996",
+      "x-ratelimit-reset-requests": "5m45.6s",
+      "x-ratelimit-limit-tokens": "8000",
+      "x-ratelimit-remaining-tokens": "2767",
+      "x-ratelimit-reset-tokens": "39.247s"
+    }
+  },
+  "retrieved_sources": [
+    {
+      "rank": 1,
+      "chunk_id": "421d70a8ef7d55be",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 63",
+      "page_number": 63,
+      "chunk_index": 0,
+      "bm25_score": 22.212277,
+      "token_count": 500,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nUSER: Hello, I wanted to talk to you about The Three Musketeers.\nMOSHI: Of course, happy to help! The Three Musketeers is a great book, and it is a\ngreat place to start if you’re looking to become more familiar with classic literature.\nUSER: Wow, this is fantastic. Can you tell me more about the story?\nMOSHI: Sure, the book is set in 17th century France and tells the tale of d’Artagnan,\na young man who aims to become a member of the prestigious Musketeers.\nUSER: So what is the story about?\nMOSHI: The story follows d’Artagnan as he travels to Paris to accomplish his\ngoal. During his journey there, he meets and befriends three of the most powerful\nMusketeers of the time, Athos, Porthos and Aramis.\nUSER: Wow, it sounds exciting. What else does the story focus on?\nMOSHI: The book also explores the political and social issues of the time, including\nthe abuses of power and the inequalities in society.\nUSER: That sounds interesting. Can you tell me more about the characters?\nMOSHI: Sure, d’Artagnan is a courageous and ambitious character who is determined\nto prove himself. Athos, Porthos and Aramis are all experienced and skilled\nMusketeers who are also known for their chivalry and loyalty to king.\nUSER: I can see this is a great book for people who are interested in history and\nadventure. How would you rate it?\nMOSHI: I would definitely give it a 4 or 5 out of 5. The Three Musketeers is a classic\nbook that has stood the test of time and is still popular today.\nUSER: Great, I really appreciate all your help. Thank you.\nMOSHI: No problem, I’m glad I could assist you.\n\nUSER: John Steinbeck is an influential American writer. Can you tell me more about\nhis life and work?\nMOSHI: Sure, John Steinbeck was born on February 27th, 1902, in Salinas, California,\nand he died on December 20th, 1968, in New York City. He was one of the most\npopular writers of his time and is"
+    },
+    {
+      "rank": 2,
+      "chunk_id": "aa701b89a9a5f51e",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 6",
+      "page_number": 6,
+      "chunk_index": 0,
+      "bm25_score": 18.981464,
+      "token_count": 500,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nFigure 1: Overview of Moshi. Moshi is a speech-text foundation model which enables\nreal-time spoken dialogue. The main components of Moshi’s architecture are: a bespoke\ntext language model backbone (Helium, see Section 3.2); a neural audio codec with residual\nvector quantization and with semantic knowledge distilled from a self-supervised speech\nmodel (Mimi, Section 3.3); the streaming, hierarchical generation of semantic and acoustic\ntokens for both the user and Moshi, along with time-aligned text tokens for Moshi when\nusing Inner Monologue (Section 3.4).\n\nbeen proposed by Wang et al. (2024), with an ASR system running in parallel to a text\ngenerator that feeds into a streaming TTS. While this allows modeling more complex sce-\nnarios than previous approaches, it still relies on a cascaded pipeline and models both the\nuser’s and the system’s speech into a single token stream, which is challenging in presence\nof significant overlap. The only previous full-duplex dialogue system is dGSLM (Nguyen\net al., 2023), which models user and system speech as separate audio token streams and pro-\nposes a Siamese architecture to process both streams jointly. While dGSLM is full-duplex,\nit remains a proof-of-concept: it does not run in an online fashion, it does not benefit from\nthe knowledge of a text language model, and it does not model acoustic information as it\nonly models semantic tokens. Moshi addresses these limitations altogether: by modeling\ntwo streams of semantic and acoustic tokens hierarchically, Moshi is full duplex and can\nexploit all the information from the user (linguistic and non-linguistic) while producing\nspeech in real time. Thanks to text pretraining and Inner Monologue, Moshi benefits from\nthe knowledge of its Helium backbone. Finally, as the model produces acoustic tokens along\nwith text and semantic tokens, it can generate an arbitrary range of emotions, voices and\nacoustic conditions. To the best of our knowledge, Moshi is the first audio language model\nthat successfully addresses the many aforementioned challenges of spoken dialogue.\n\n3 Model\n\n3.1 Overview\n\nMoshi is a multi-stream speech-to-speech Transformer model, which allows for full-duplex\nspoken dialogue with"
+    },
+    {
+      "rank": 3,
+      "chunk_id": "d7fba1aa4a5ba6d3",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 62",
+      "page_number": 62,
+      "chunk_index": 0,
+      "bm25_score": 18.509783,
+      "token_count": 500,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nAppendix F. Synthetic transcripts generation for fine-tuning\n\nIn this section, we provide examples of synthetic transcripts.\n\nF.1 General knowledge\n\n USER: Hey, I’ve been researching a bit about information theory, and I’ve come across\n this concept of entropy. What is it?\n MOSHI: Oh, that’s an interesting topic. Entropy, in information theory, is a measure\n of the average level of information, surprise, or uncertainty inherent to a random\n variable’s p ossible outcomes. It’s actually a very useful concept in communication\n and computer science.\n USER: So how does it work?\n MOSHI: Entropy is calculated using a formula where it’s negative sum of the products\n of each possible outcome’s probability and its logarithm to a base, usually base-2 or\n base-e. T he higher the entropy, the greater the uncertainty or information, and vice\n versa.\n USER: Okay, that’s interesting. How does it relate to communication and computer\n science?\n MOSHI: In communication and computer science, entropy plays a crucial role, espe-\n cially in the field of error-correcting codes and compression methods. Imagine a\n source sending a message, and each bit has a certain probability.\n USER: Yeah.\n MOSHI: Entropy tells us how much information we need to send from the source to\n the receiver to ensure reliable communication. The lower the entropy, the fewer bits\n are needed, and the less information is lost in transmission or reception.\n USER: That’s fascinating. How does it relate to statistical thermodynamics,\n MOSHI: That’s a good question. Entropy in information theory is directly analogous\n to the entropy in statistical thermodynamics. It’s a measure of the unavailability of\n a system’s energy to perform work. The higher the entropy, the more disordered the\n system. In information theory, entropy measures the amount of missing information\n that could be replaced.\n USER: Wow. So entropy can be used to measure disorder in both physical and digital\n systems.\n MOSHI: Exactly and entropy can also be used to measure the amount of missing in-\n formation or the amount of compressed data after encoding a message. It’s quite\n versatile, isn’t it?\n USER: Yeah, very versatile. Thank you for explaining all this to me. It’s really fasci-\n nating.\n MOSHI: You’re welcome."
+    },
+    {
+      "rank": 4,
+      "chunk_id": "31c92a0d7866d069",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 64",
+      "page_number": 64,
+      "chunk_index": 0,
+      "bm25_score": 17.411889,
+      "token_count": 471,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nF.2 Misspelling\n\n USER: I’d like to learn about Danyh Amendol?\n MOSHI: Sorry, I’m not sure what you’re referring to.\n USER: Oh, Danyh Amendola, the football player. The former football player.\n MOSHI: Okay, I know who Danny Amendola is. He is a former professional football\n wide receiver who played for the New England Patriots. He also played for the\n Miami Dolphins, Detroit Lions, and Houston Texans.\n USER: Okay,\n MOSHI: He was drafted by the New England Patriots in 2010.\n USER: and how about his college football\n MOSHI: He played college football for the Texas Tech Red Raiders. His career in the\n NFL,\n USER: okay,\n MOSHI: he was named an alternate for the 2011 Pro Bowl.\n USER: yeah,\n MOSHI: He also appeared in three Super Bowls, winning two.\n USER: yeah.\n\n USER: I’d like to learn about Maroom?\n MOSHI: I’m sorry, I did not catch that.\n USER: I’d like to learn about Maroon.\n MOSHI: Oh, Marron. Okay, well, let’s see. Maroon is a color that is a dark red or\n a brownish red. It is named after the French word for chestnut. It has a range\n of shades from a dark brownish red color to a dark reddish purple color. It’s also\n considered to be the complementary color to teal.\n USER: What’s the opposite of Maroom?\n MOSHI: The opposite of Maroon, I’m sorry, that’s not a word. I think you mean\n complementary color.\n USER: Yeah, that’s\n MOSHI: Okay,\n USER: it.\n MOSHI: so, teal is a color that is made up of blue and green, and maroon is a color\n that is made up of red and brown. So, when you put those two colors together, they\n create a complementary color, which is the opposite color.\n USER: Yeah. I think I’m gonna look more up on Maroom.\n MOSHI: Oh, okay. Yeah,\n USER: I’ve got some questions.\n MOSHI: yeah.\n\n 64"
+    },
+    {
+      "rank": 5,
+      "chunk_id": "bd048475755cc292",
+      "paper_id": "1706.03762",
+      "paper_title": "Attention Is All You Need",
+      "paper_version": 7,
+      "citation": "arXiv:1706.03762v7, PDF page 14",
+      "page_number": 14,
+      "chunk_index": 0,
+      "bm25_score": 17.226936,
+      "token_count": 196,
+      "section_candidates": [],
+      "text": "The Law will never be perfect , but its application should be just - this is what we are missing , in my opinion . <EOS> <pad>\n\n The Law will never be perfect , but its application should be just - this is what we are missing , in my opinion . <EOS> <pad>\n\n The Law will never be perfect , but its application should be just - this is what we are missing , in my opinion . <EOS> <pad>\n\n The Law will never be perfect , but its application should be just - this is what we are missing , in my opinion . <EOS> <pad>\n\nFigure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top:\nFull attentions for head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5\nand 6. Note that the attentions are very sharp for this word.\n\n 14"
+    }
+  ]
+}

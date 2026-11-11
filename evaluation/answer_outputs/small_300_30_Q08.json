@@ -1,0 +1,145 @@
+{
+  "request_id": "small_300_30-Q08",
+  "question_id": "Q08",
+  "question": "How does dynamic chunking determine or adapt sequence chunk boundaries?",
+  "configuration": "small_300_30",
+  "answer": "Dynamic chunking determines and adapts chunk boundaries by learning them directly from the data during training, rather than fixing them a priori.  \nIn the H‑Net architecture, each chunking layer contains a **routing module** that examines the similarity between adjacent token‑level representations produced by the encoder.  The module computes cosine similarity between consecutive encoder outputs; when the similarity drops (i.e., the context shifts), the routing module assigns a higher probability that a boundary should be placed there.  These boundary probabilities are then turned into hard boundary indicators, which the **downsampler** uses to keep only the vectors at the chosen boundaries, thereby compressing low‑information regions while preserving high‑information content.  Because the routing module and the rest of the network are trained end‑to‑end, the learned boundaries adapt to the semantic structure of each input sequence.  \n\n> *“H‑Net learns chunking boundaries through end‑to‑end training, allowing it to identify semantically meaningful units adaptively.”*  \n> *“The routing module implements this intuition through cosine similarity between adjacent encoder outputs.”*  \n> *“Given encoder outputs ˆX, it calculates boundary probabilities pt and boundary indicators bt.”*  \n\nThese mechanisms enable the dynamic chunking module to compress data to a resolution comparable to BPE tokenizers (≈4.5–5 bytes per chunk) and to discover meaningful boundaries without any external supervision",
+  "decision": "refused",
+  "validation": {
+    "passed": false,
+    "decision": "retry_or_refuse",
+    "issues": [
+      "missing_citations"
+    ],
+    "citation_count": 0,
+    "retrieved_source_count": 3,
+    "unsupported_citations": []
+  },
+  "model_metrics": {
+    "model": "openai/gpt-oss-20b",
+    "backend": "groq",
+    "response": "Dynamic chunking determines and adapts chunk boundaries by learning them directly from the data during training, rather than fixing them a priori.  \nIn the H‑Net architecture, each chunking layer contains a **routing module** that examines the similarity between adjacent token‑level representations produced by the encoder.  The module computes cosine similarity between consecutive encoder outputs; when the similarity drops (i.e., the context shifts), the routing module assigns a higher probability that a boundary should be placed there.  These boundary probabilities are then turned into hard boundary indicators, which the **downsampler** uses to keep only the vectors at the chosen boundaries, thereby compressing low‑information regions while preserving high‑information content.  Because the routing module and the rest of the network are trained end‑to‑end, the learned boundaries adapt to the semantic structure of each input sequence.  \n\n> *“H‑Net learns chunking boundaries through end‑to‑end training, allowing it to identify semantically meaningful units adaptively.”*  \n> *“The routing module implements this intuition through cosine similarity between adjacent encoder outputs.”*  \n> *“Given encoder outputs ˆX, it calculates boundary probabilities pt and boundary indicators bt.”*  \n\nThese mechanisms enable the dynamic chunking module to compress data to a resolution comparable to BPE tokenizers (≈4.5–5 bytes per chunk) and to discover meaningful boundaries without any external supervision",
+    "status": "ok",
+    "http_status": 200,
+    "first_token_ms": 1033.68,
+    "total_ms": 1379.88,
+    "tokens_in": 1685,
+    "tokens_out": 800,
+    "total_tokens": 2485,
+    "rate_limit_headers": {
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-remaining-requests": "997",
+      "x-ratelimit-reset-requests": "4m19.2s",
+      "x-ratelimit-limit-tokens": "8000",
+      "x-ratelimit-remaining-tokens": "2264",
+      "x-ratelimit-reset-tokens": "43.019s"
+    }
+  },
+  "retrieved_sources": [
+    {
+      "rank": 1,
+      "chunk_id": "94299f091cc411cf",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 31",
+      "page_number": 31,
+      "chunk_index": 2,
+      "bm25_score": 17.147472,
+      "token_count": 297,
+      "section_candidates": [
+        "A",
+        "Related Work",
+        "A.1",
+        "Autoregressive Tokenizer-free Architectures"
+      ],
+      "text": " boundaries are content-agnostic (usually\n some variant of fixed-width pooling).\n\n 3. Hierarchical architectures with external chunking strategeies, where chunk boundaries are provided by an external\n function or module.\n\n 4. Hierarchical architectures with dynamic chunking strategies, where chunk boundaries are content-dependent and\n learned end-to-end.\n\nA.1.1 Isotropic Architectures\n\nThe most direct approach to modeling language with tokenizers is to simply model raw byte sequences with a standard\nsequence model architecture. Since this naive approach suffers from computational challenges on long sequences, Mam-\nbaByte (Wang et al. 2024) proposed using a state space model for its linear-time efficiency. We similarly use Mamba(-2)\n(Dao and Gu 2024) layers in the outer stages of an H-Net. Notably, through extensive ablations we show that Mamba is not\njust more efficient but also better at modeling high-resolution data such as text characters and DNA base pairs.\n\nA.1.2 Static Chunking\n\nTo reduce sequence length, several approaches downsample the input sequence hierarchically. The most straightforward\nmethods operate independently of input context, partitioning sequences using fixed-size intervals. Many strategies could\nbe used to aggregate a width-𝑘window, including direct downsampling, average pooling, linear transformations that mix\nacross the chunk, convolutions, and more; we lump these together as pooling operations.\n\n 31"
+    },
+    {
+      "rank": 2,
+      "chunk_id": "092c5c1bcde3e83c",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 3",
+      "page_number": 3,
+      "chunk_index": 1,
+      "bm25_score": 16.490044,
+      "token_count": 121,
+      "section_candidates": [
+        "!",
+        "Dechunking",
+        "(d) Upsampler",
+        "(c) Smoothing Module",
+        "ℳ",
+        "(b) Downsampler",
+        "Chunking",
+        "(a) Routing Module",
+        "ℰ",
+        "Dynamic Chunking"
+      ],
+      "text": " Linear in equation (3) and STE in equation (9) are omitted\nin the illustration for brevity.\n\nlanguage model: with a single stage of dynamic chunking, a byte-level H-Net matches the perplexity and downstream\nperformance of a strong BPE-tokenized Transformer at sizes exceeding 1B parameters. Empirically, the dynamic\nchunking module naturally compresses data to a similar resolution as BPE tokenizers (4.5-5 bytes/chunk) and qualitatively\nlearns meaningful boundaries, all without any external supervision or heuristics.\n\n 3"
+    },
+    {
+      "rank": 3,
+      "chunk_id": "75baf53ec44fe35b",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 6",
+      "page_number": 6,
+      "chunk_index": 1,
+      "bm25_score": 15.244028,
+      "token_count": 300,
+      "section_candidates": [
+        "2.2",
+        "Dynamic Chunking (DC)"
+      ],
+      "text": " careful tuning of the layer allocation and hyperpa-\nrameters between sub-networks.\n\n2.2 Dynamic Chunking (DC)\n\nH-Net learns chunking boundaries through end-to-end training, allowing it to identify semantically meaningful units\nadaptively. Furthermore, this dynamic approach enables the model to allocate computational resources efficiently by\ncompressing low-information regions while preserving high-information content at appropriate granularity.\n\n2.2.1 Chunking Layer\nThe chunking layer (Chunk in equation (2)) contains a routing module and downsampler, as illustrated in Figure 1-\n( bottom-right ).\n\nRouting Module. In natural data, meaningful boundaries tend to emerge at points of contextual or semantic shift. From\nthis observation, we add an inductive bias by measuring the similarity between adjacent representations: when context\nchanges, consecutive vectors should exhibit lower similarity. The routing module implements this intuition through\ncosine similarity between adjacent encoder outputs. Given encoder outputs ˆ𝑋, it calculates boundary probabilities 𝑝𝑡and\nboundary indicators 𝑏𝑡as follows:\n\n 1 𝑞⊤𝑡𝑘𝑡−1\n 𝑞𝑡= 𝑊𝑞ˆ𝑥𝑡, 𝑘𝑡= 𝑊𝑘ˆ𝑥𝑡, 𝑝𝑡= 1 − ∈[0, 1],"
+    },
+    {
+      "rank": 4,
+      "chunk_id": "340e6dd145cabbb5",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 31",
+      "page_number": 31,
+      "chunk_index": 1,
+      "bm25_score": 14.375101,
+      "token_count": 300,
+      "section_candidates": [
+        "A",
+        "Related Work",
+        "A.1",
+        "Autoregressive Tokenizer-free Architectures"
+      ],
+      "text": "; Sun et al. 2020; Xue et al. 2022).\nThese limitations stem from the static nature of predefined vocabularies, which cannot adapt their chunking strategies to\ninput content or context.\n\nTo address these constraints, tokenizer-free methods have emerged that avoid the reliance on predefined vocabularies.\n\n • In Appendix A.1, we discuss the most directly related prior work on autoregressive sequence models, extending the\n overview from Section 1.\n\n • In Appendix A.2, we discuss non-autoregressive models. We note that essentially all autoregressive architectures\n can be turned into non-autoregressive architectures (including our proposed H-Net), and vice versa, which provide\n possible extensions of H-Net in future work. However, we provide this delineation because it marks an important\n difference in motivation that influences design considerations and downstream evaluations.\n\n • Appendix A.3 mentions other works in non-language modalities related to tokenization.\n\nWe summarize our discussion on tokenizer-free architectures in Table 6.\n\nA.1 Autoregressive Tokenizer-free Architectures\n\nAs outlined in Section 1, prior work on autoregressive tokenizers for architectures can be divided into four categories:\n\n 1. Non-hierarchical isotropic architectures.\n 2. Hierarchical architectures with static chunking strategies, where chunk boundaries are content-agnostic (usually\n some variant of fixed-width pooling).\n\n 3. Hierarchical architectures with external chunking strategeies,"
+    },
+    {
+      "rank": 5,
+      "chunk_id": "33dae142828f94c4",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 3",
+      "page_number": 3,
+      "chunk_index": 0,
+      "bm25_score": 14.304571,
+      "token_count": 300,
+      "section_candidates": [
+        "!",
+        "Dechunking",
+        "(d) Upsampler",
+        "(c) Smoothing Module",
+        "ℳ",
+        "(b) Downsampler",
+        "Chunking",
+        "(a) Routing Module",
+        "ℰ",
+        "Dynamic Chunking"
+      ],
+      "text": "h e _ e n d _ o f _ t o k e n s ! *̅\n !\n\n Dechunkinĝ\n\n .\n (d) Upsampler\n\n 1 −'!\"$ 1 −'!\"# 1 −'!\n .\n\n '!\"% '!\"$ '!\"# '!\n\n .̅\n ℳ (c) Smoothing Module\n 0\"#$\n\n /0\"\n +\"\n (b) Downsampler\n\n -\n\n Chunking /0\n (a) Routing Module\n ℰ\n T h e _ e n d _ o f _ t o k e n s Dynamic Chunking\n\nFigure 1: (left) Architectural overview of H-Net with a two-stage hierarchical design (𝑆= 2). (right) Dynamic Chunking\n(DC). ( bottom-right ) Key components of a chunking layer: (a) a routing module for dynamically drawing chunk\nboundaries, and (b) a downsampler that selectively retains vectors based on boundary indicators, reducing sequence length\nwhile preserving semantically significant positions. ( top-right ) Key components of a dechunking layer: (c) a smoothing\nmodule for converting discrete chunks into interpolated representations, and (d) an upsampler that restores compressed\nvectors to their original resolution based on boundary indicators. Linear in equation (3) and STE in equation (9) are omitted\nin the illustration for brevity.\n\nlanguage model: with a single"
+    }
+  ]
+}

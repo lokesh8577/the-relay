@@ -1,0 +1,122 @@
+{
+  "request_id": "baseline_500_50-Q02",
+  "question_id": "Q02",
+  "question": "How does scaled dot-product attention use the key dimension to scale attention scores?",
+  "configuration": "baseline_500_50",
+  "answer": "Scaled dot‑product attention first computes the dot product between each query vector and every key vector.  \nBecause the key vectors have dimension \\(d_k\\), the magnitude of these dot products grows with \\(d_k\\).  \nTo keep the values in a range where the subsequent softmax has useful gradients, the attention mechanism divides each dot product by \\(\\sqrt{d_k}\\) before applying the softmax. This scaling factor is the key dimension’s square root, which normalises the scores regardless of how large \\(d_k\\) is.  \n\n> “We compute the dot products of the query with all keys, divide each by \\(\\sqrt{d_k}\\), and apply a softmax function to obtain the weights on the values.”  \n> [arXiv:1706.03762v7, PDF page 4]",
+  "decision": "accepted",
+  "validation": {
+    "passed": true,
+    "decision": "accept",
+    "issues": [],
+    "citation_count": 1,
+    "retrieved_source_count": 4,
+    "unsupported_citations": []
+  },
+  "model_metrics": {
+    "model": "openai/gpt-oss-20b",
+    "backend": "groq",
+    "response": "Scaled dot‑product attention first computes the dot product between each query vector and every key vector.  \nBecause the key vectors have dimension \\(d_k\\), the magnitude of these dot products grows with \\(d_k\\).  \nTo keep the values in a range where the subsequent softmax has useful gradients, the attention mechanism divides each dot product by \\(\\sqrt{d_k}\\) before applying the softmax. This scaling factor is the key dimension’s square root, which normalises the scores regardless of how large \\(d_k\\) is.  \n\n> “We compute the dot products of the query with all keys, divide each by \\(\\sqrt{d_k}\\), and apply a softmax function to obtain the weights on the values.”  \n> [arXiv:1706.03762v7, PDF page 4]",
+    "status": "ok",
+    "http_status": 200,
+    "first_token_ms": 866.39,
+    "total_ms": 1051.49,
+    "tokens_in": 2507,
+    "tokens_out": 317,
+    "total_tokens": 2824,
+    "rate_limit_headers": {
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-remaining-requests": "997",
+      "x-ratelimit-reset-requests": "4m19.2s",
+      "x-ratelimit-limit-tokens": "8000",
+      "x-ratelimit-remaining-tokens": "5213",
+      "x-ratelimit-reset-tokens": "20.902s"
+    }
+  },
+  "retrieved_sources": [
+    {
+      "rank": 1,
+      "chunk_id": "2a3b7d86ec70496c",
+      "paper_id": "1706.03762",
+      "paper_title": "Attention Is All You Need",
+      "paper_version": 7,
+      "citation": "arXiv:1706.03762v7, PDF page 4",
+      "page_number": 4,
+      "chunk_index": 0,
+      "bm25_score": 33.835827,
+      "token_count": 500,
+      "section_candidates": [],
+      "text": "Scaled Dot-Product Attention Multi-Head Attention\n\nFigure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several\nattention layers running in parallel.\n\nof the values, where the weight assigned to each value is computed by a compatibility function of the\nquery with the corresponding key.\n\n3.2.1 Scaled Dot-Product Attention\n\nWe call our particular attention \"Scaled Dot-Product Attention\" (Figure 2). The input consists of\nqueries and keys of dimension dk, and values of dimension dv. We compute the dot products of the\nquery with all keys, divide each by √dk, and apply a softmax function to obtain the weights on the\nvalues.\n\nIn practice, we compute the attention function on a set of queries simultaneously, packed together\ninto a matrix Q. The keys and values are also packed together into matrices K and V . We compute\nthe matrix of outputs as:\n\n Attention(Q, K, V ) = softmax(QKT )V (1) √dk\n\nThe two most commonly used attention functions are additive attention [2], and dot-product (multi-\nplicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor\nof √dk1 . Additive attention computes the compatibility function using a feed-forward network with\na single hidden layer. While the two are similar in theoretical complexity, dot-product attention is\nmuch faster and more space-efficient in practice, since it can be implemented using highly optimized\nmatrix multiplication code.\n\nWhile for small values of dk the two mechanisms perform similarly, additive attention outperforms\ndot product attention without scaling for larger values of dk [3]. We suspect that for large values of\ndk, the dot products grow large in magnitude, pushing the softmax function into regions where it has\nextremely small gradients 4. To counteract this effect, we scale the dot products by √dk1 .\n\n3.2.2 Multi-Head Attention\n\nInstead of performing a single attention function with dmodel-dimensional keys, values and queries,\nwe found it beneficial to linearly project the queries, keys and values h times with different, learned\nlinear projections to dk, dk and dv dimensions, respectively. On each of these projected versions of\nqueries, keys and values we then perform the attention function in parallel, yielding dv-dimensional\n\n 4To illustrate why the dot products get large, assume that the components of q"
+    },
+    {
+      "rank": 2,
+      "chunk_id": "4952c15a5e8b6580",
+      "paper_id": "1706.03762",
+      "paper_title": "Attention Is All You Need",
+      "paper_version": 7,
+      "citation": "arXiv:1706.03762v7, PDF page 5",
+      "page_number": 5,
+      "chunk_index": 0,
+      "bm25_score": 22.179496,
+      "token_count": 500,
+      "section_candidates": [],
+      "text": "output values. These are concatenated and once again projected, resulting in the final values, as\ndepicted in Figure 2.\n\nMulti-head attention allows the model to jointly attend to information from different representation\nsubspaces at different positions. With a single attention head, averaging inhibits this.\n\n MultiHead(Q, K, V ) = Concat(head1, ..., headh)W O\n where headi = Attention(QWiQ , KW iK , V W iV )\n\nWhere the projections are parameter matrices W iQ ∈Rdmodel×dk, W iK ∈Rdmodel×dk, W iV ∈Rdmodel×dv\nand W O ∈Rhdv×dmodel.\n\nIn this work we employ h = 8 parallel attention layers, or heads. For each of these we use\ndk = dv = dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost\nis similar to that of single-head attention with full dimensionality.\n\n3.2.3 Applications of Attention in our Model\n\nThe Transformer uses multi-head attention in three different ways:\n\n • In \"encoder-decoder attention\" layers, the queries come from the previous decoder layer,\n and the memory keys and values come from the output of the encoder. This allows every\n position in the decoder to attend over all positions in the input sequence. This mimics the\n typical encoder-decoder attention mechanisms in sequence-to-sequence models such as\n [38, 2, 9].\n\n • The encoder contains self-attention layers. In a self-attention layer all of the keys, values\n and queries come from the same place, in this case, the output of the previous layer in the\n encoder. Each position in the encoder can attend to all positions in the previous layer of the\n encoder.\n\n • Similarly, self-attention layers in the decoder allow each position in the decoder to attend to\n all positions in the decoder up to and including that position. We need to prevent leftward\n information flow in the decoder to preserve the auto-regressive property. We implement this\n inside of scaled dot-product attention by masking out (setting to −∞) all values in the input\n of the softmax which correspond to illegal connections. See Figure 2.\n\n3.3 Position-wise Feed-Forward Networks\n\nIn addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully\nconnected feed-forward network, which"
+    },
+    {
+      "rank": 3,
+      "chunk_id": "cf290d3589b32401",
+      "paper_id": "1706.03762",
+      "paper_title": "Attention Is All You Need",
+      "paper_version": 7,
+      "citation": "arXiv:1706.03762v7, PDF page 1",
+      "page_number": 1,
+      "chunk_index": 0,
+      "bm25_score": 18.767803,
+      "token_count": 500,
+      "section_candidates": [
+        "Provided proper attribution is provided, Google hereby grants permission to",
+        "reproduce the tables and figures in this paper solely for use in journalistic or",
+        "scholarly works.",
+        "Attention Is All You Need",
+        "Abstract",
+        "arXiv:1706.03762v7  [cs.CL]  2 Aug 2023"
+      ],
+      "text": "Provided proper attribution is provided, Google hereby grants permission to\n reproduce the tables and figures in this paper solely for use in journalistic or\n scholarly works.\n\n Attention Is All You Need\n\n Ashish Vaswani∗ Noam Shazeer∗ Niki Parmar∗ Jakob Uszkoreit∗2023 Google Brain Google Brain Google Research Google Research\nAug avaswani@google.comLlion Jones∗ noam@google.comAidan N. Gomez∗†nikip@google.comŁukaszusz@google.comKaiser∗\n2 Google Research University of Toronto Google Brain\n llion@google.com aidan@cs.toronto.edu lukaszkaiser@google.com\n\n Illia Polosukhin∗‡\n illia.polosukhin@gmail.com[cs.CL]\n\n Abstract\n\n The dominant sequence transduction models are based on complex recurrent or\n convolutional neural networks that include an encoder and a decoder. The best\n performing models also connect the encoder and decoder through an attention\n mechanism. We propose a new simple network architecture, the Transformer,\n based solely on attention mechanisms, dispensing with recurrence and convolutions\n entirely. Experiments on two machine translation tasks show these models to\n be superior in quality while being more parallelizable and requiring significantly\n less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-\n to-German translation task, improving over the existing best results, including\n ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task,\n our model establishes a new single-model state-of-the-art BLEU score of 41.8 after\n training for 3.5 days on eight GPUs, a small fraction of the training costs of thearXiv:1706.03762v7 best models from the literature. We show that the Transformer generalizes well to\n other tasks by applying it successfully to English constituency parsing both with\n large and limited training data.\n\n ∗Equal contribution. Listing order is random. Jakob proposed replacing RNNs with self-attention and started\n the effort to evaluate this idea. Ashish, with Illia, designed and implemented the first Transformer models and\n has been crucially involved in every aspect of this work. Noam proposed scaled dot-product attention, multi-head\n attention and the parameter-free position representation and became the other person"
+    },
+    {
+      "rank": 4,
+      "chunk_id": "1fb7efd0df74ec72",
+      "paper_id": "1706.03762",
+      "paper_title": "Attention Is All You Need",
+      "paper_version": 7,
+      "citation": "arXiv:1706.03762v7, PDF page 1",
+      "page_number": 1,
+      "chunk_index": 1,
+      "bm25_score": 17.938553,
+      "token_count": 182,
+      "section_candidates": [
+        "Provided proper attribution is provided, Google hereby grants permission to",
+        "reproduce the tables and figures in this paper solely for use in journalistic or",
+        "scholarly works.",
+        "Attention Is All You Need",
+        "Abstract",
+        "arXiv:1706.03762v7  [cs.CL]  2 Aug 2023"
+      ],
+      "text": "ish, with Illia, designed and implemented the first Transformer models and\n has been crucially involved in every aspect of this work. Noam proposed scaled dot-product attention, multi-head\n attention and the parameter-free position representation and became the other person involved in nearly every\n detail. Niki designed, implemented, tuned and evaluated countless model variants in our original codebase and\n tensor2tensor. Llion also experimented with novel model variants, was responsible for our initial codebase, and\n efficient inference and visualizations. Lukasz and Aidan spent countless long days designing various parts of and\n implementing tensor2tensor, replacing our earlier codebase, greatly improving results and massively accelerating\n our research.\n †Work performed while at Google Brain.\n ‡Work performed while at Google Research.\n\n 31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA."
+    },
+    {
+      "rank": 5,
+      "chunk_id": "de2ccf17dbb7f1c3",
+      "paper_id": "1706.03762",
+      "paper_title": "Attention Is All You Need",
+      "paper_version": 7,
+      "citation": "arXiv:1706.03762v7, PDF page 9",
+      "page_number": 9,
+      "chunk_index": 1,
+      "bm25_score": 15.15668,
+      "token_count": 449,
+      "section_candidates": [],
+      "text": " search as described in the previous section, but no\ncheckpoint averaging. We present these results in Table 3.\n\nIn Table 3 rows (A), we vary the number of attention heads and the attention key and value dimensions,\nkeeping the amount of computation constant, as described in Section 3.2.2. While single-head\nattention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads.\n\nIn Table 3 rows (B), we observe that reducing the attention key size dk hurts model quality. This\nsuggests that determining compatibility is not easy and that a more sophisticated compatibility\nfunction than dot product may be beneficial. We further observe in rows (C) and (D) that, as expected,\nbigger models are better, and dropout is very helpful in avoiding over-fitting. In row (E) we replace our\nsinusoidal positional encoding with learned positional embeddings [9], and observe nearly identical\nresults to the base model.\n\n6.3 English Constituency Parsing\n\nTo evaluate if the Transformer can generalize to other tasks we performed experiments on English\nconstituency parsing. This task presents specific challenges: the output is subject to strong structural\nconstraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence\nmodels have not been able to attain state-of-the-art results in small-data regimes [37].\n\nWe trained a 4-layer transformer with dmodel = 1024 on the Wall Street Journal (WSJ) portion of the\nPenn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting,\nusing the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences\n[37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens\nfor the semi-supervised setting.\n\nWe performed only a small number of experiments to select the dropout, both attention and residual\n(section 5.4), learning rates and beam size on the Section 22 development set, all other parameters\nremained unchanged from the English-to-German base translation model. During inference, we\n\n 9"
+    }
+  ]
+}

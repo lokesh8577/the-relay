@@ -1,0 +1,6 @@
+scenario,requests,successful,errors,rate_limited,success_pct,ttft_p50_ms,ttft_p95_ms,total_p50_ms,total_p95_ms,failed_latency_p50_ms,rpm_limit
+burst_concurrency,12,5,7,0,41.67,1579.99,2284.3,3977.5,5748.52,24.1,10
+daily_budget,8,5,0,3,62.5,1608.46,2312.07,4016.54,5774.65,50.17,100
+halved_rpm,8,5,0,3,62.5,1600.82,2304.67,3999.95,5772.33,42.24,5
+overload,20,5,15,0,25.0,1607.72,2274.81,4005.78,5739.48,2.88,10
+steady,10,7,3,0,70.0,1954.9,2347.65,4948.4,5939.31,7.37,10

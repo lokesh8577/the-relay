@@ -1,0 +1,10 @@
+request_id,scenario,source,start_time,first_token_ms,total_ms,status,retries,tokens_in,tokens_out,retrieval_setting,answer_grade,http_status,model,validation_passed,decision,error,answer_file
+small_300_30-Q02,answer_quality,real,2026-11-10T18:06:17.406598+00:00,1102.44,1315.88,ok,0,1856,280,small_300_30,correct,200,openai/gpt-oss-20b,True,accepted,,evaluation/answer_outputs/small_300_30_Q02.json
+small_300_30-Q04,answer_quality,real,2026-11-10T18:06:20.730362+00:00,1095.47,1485.5,ok,0,1798,767,small_300_30,wrong,200,openai/gpt-oss-20b,True,accepted,,evaluation/answer_outputs/small_300_30_Q04.json
+small_300_30-Q08,answer_quality,real,2026-11-10T18:06:24.223875+00:00,1033.68,1379.88,ok,0,1685,800,small_300_30,wrong,200,openai/gpt-oss-20b,False,refused,,evaluation/answer_outputs/small_300_30_Q08.json
+baseline_500_50-Q02,answer_quality,real,2026-11-10T18:08:44.177079+00:00,866.39,1051.49,ok,0,2507,317,baseline_500_50,correct,200,openai/gpt-oss-20b,True,accepted,,evaluation/answer_outputs/baseline_500_50-Q02.json
+baseline_500_50-Q04,answer_quality,real,2026-11-10T18:08:47.235014+00:00,1084.51,1417.55,ok,0,2524,800,baseline_500_50,wrong,200,openai/gpt-oss-20b,False,refused,,evaluation/answer_outputs/baseline_500_50-Q04.json
+baseline_500_50-Q08,answer_quality,real,2026-11-10T18:11:49.712743+00:00,1355.57,1782.87,ok,0,2296,800,baseline_500_50,correct,200,openai/gpt-oss-20b,True,accepted,,evaluation/answer_outputs/baseline_500_50-Q08.json
+large_700_70-Q02,answer_quality,real,2026-11-10T18:11:53.560181+00:00,924.35,1162.18,ok,0,3629,367,large_700_70,correct,200,openai/gpt-oss-20b,True,accepted,,evaluation/answer_outputs/large_700_70-Q02.json
+large_700_70-Q04,answer_quality,real,2026-11-10T18:14:50.967511+00:00,1249.03,1688.64,ok,0,3192,775,large_700_70,correct,200,openai/gpt-oss-20b,True,accepted,,evaluation/answer_outputs/large_700_70-Q04.json
+large_700_70-Q08,answer_quality,real,2026-11-10T18:16:28.615050+00:00,944.48,1302.37,ok,0,3251,579,large_700_70,correct,200,openai/gpt-oss-20b,True,accepted,,evaluation/answer_outputs/large_700_70-Q08.json

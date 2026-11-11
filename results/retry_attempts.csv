@@ -1,0 +1,12 @@
+request_id,attempt,status,http_status,elapsed_ms,error,headers
+retry-flaky-07e89db9,1,error,503,198.61,"{""error"":{""message"":""Temporary simulated failure"",""type"":""standin_error""}}",{}
+retry-flaky-07e89db9,2,error,503,11.47,"{""error"":{""message"":""Temporary simulated failure"",""type"":""standin_error""}}",{}
+retry-flaky-07e89db9,3,ok,200,1930.7,,{}
+retry-server_error-1743bef8,1,error,503,60.83,"{""error"":{""message"":""Simulated stand-in server failure"",""type"":""standin_error""}}",{}
+retry-server_error-1743bef8,2,error,503,25.19,"{""error"":{""message"":""Simulated stand-in server failure"",""type"":""standin_error""}}",{}
+retry-server_error-1743bef8,3,error,503,40.91,"{""error"":{""message"":""Simulated stand-in server failure"",""type"":""standin_error""}}",{}
+retry-rate_limit-34f9c95f,1,error,429,123.93,"{""error"":{""message"":""Stand-in rate limit reached"",""type"":""rate_limit_error""}}","{""retry-after"": ""5"", ""x-ratelimit-limit-requests"": ""10"", ""x-ratelimit-remaining-requests"": ""0"", ""x-ratelimit-limit-tokens"": ""8000"", ""x-ratelimit-remaining-tokens"": ""0""}"
+retry-rate_limit-34f9c95f,2,error,429,42.53,"{""error"":{""message"":""Stand-in rate limit reached"",""type"":""rate_limit_error""}}","{""retry-after"": ""5"", ""x-ratelimit-limit-requests"": ""10"", ""x-ratelimit-remaining-requests"": ""0"", ""x-ratelimit-limit-tokens"": ""8000"", ""x-ratelimit-remaining-tokens"": ""0""}"
+retry-rate_limit-34f9c95f,3,error,429,21.43,"{""error"":{""message"":""Stand-in rate limit reached"",""type"":""rate_limit_error""}}","{""retry-after"": ""5"", ""x-ratelimit-limit-requests"": ""10"", ""x-ratelimit-remaining-requests"": ""0"", ""x-ratelimit-limit-tokens"": ""8000"", ""x-ratelimit-remaining-tokens"": ""0""}"
+retry-timeout-e3f4e130,1,error,200,2163.94,Model request timed out: ,"{""x-ratelimit-limit-requests"": ""10"", ""x-ratelimit-remaining-requests"": ""9"", ""x-ratelimit-reset-requests"": ""1m"", ""x-ratelimit-limit-tokens"": ""8000"", ""x-ratelimit-remaining-tokens"": ""7000"", ""x-ratelimit-reset-tokens"": ""1m""}"
+retry-timeout-e3f4e130,2,error,200,2018.06,Model request timed out: ,"{""x-ratelimit-limit-requests"": ""10"", ""x-ratelimit-remaining-requests"": ""8"", ""x-ratelimit-reset-requests"": ""1m"", ""x-ratelimit-limit-tokens"": ""8000"", ""x-ratelimit-remaining-tokens"": ""7000"", ""x-ratelimit-reset-tokens"": ""1m""}"

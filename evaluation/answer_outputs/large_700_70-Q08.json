@@ -1,0 +1,130 @@
+{
+  "request_id": "large_700_70-Q08",
+  "question_id": "Q08",
+  "question": "How does dynamic chunking determine or adapt sequence chunk boundaries?",
+  "configuration": "large_700_70",
+  "answer": "Dynamic Chunking (DC) learns where to split a raw sequence into chunks directly from the data during training.  \nAt each layer the **routing module** computes a probability that a boundary should be placed between two consecutive token‑level representations.  \nIt does this by projecting each encoder output \\(\\hat{x}_t\\) into a query vector \\(q_t = W_q \\hat{x}_t\\) and a key vector \\(k_t = W_k \\hat{x}_t\\), then taking the cosine similarity between the query of the current token and the key of the previous token:\n\n\\[\np_t = 1 - \\frac{q_t^\\top k_{t-1}}{\\|q_t\\|\\;\\|k_{t-1}\\|} \\quad (t>1), \\qquad p_1 = 1.0\n\\]\n\nA boundary indicator \\(b_t\\) is set to 1 whenever \\(p_t \\ge 0.5\\) (otherwise 0).  \nThe first token is always marked as a boundary so the sequence always starts a new chunk.\n\nThe **downsampler** then keeps only the representations at positions where \\(b_t = 1\\), effectively compressing low‑information regions while preserving high‑information content at the chosen granularity.\n\nThus, dynamic chunking adapts chunk boundaries by measuring contextual change via cosine similarity between adjacent representations and selecting boundaries where this similarity drops below a learned threshold.  \n\n[arXiv:2507.07955v2, PDF page 3]  \n[arXiv:2507.07955v2, PDF page 6]",
+  "decision": "accepted",
+  "validation": {
+    "passed": true,
+    "decision": "accept",
+    "issues": [],
+    "citation_count": 2,
+    "retrieved_source_count": 5,
+    "unsupported_citations": []
+  },
+  "model_metrics": {
+    "model": "openai/gpt-oss-20b",
+    "backend": "groq",
+    "response": "Dynamic Chunking (DC) learns where to split a raw sequence into chunks directly from the data during training.  \nAt each layer the **routing module** computes a probability that a boundary should be placed between two consecutive token‑level representations.  \nIt does this by projecting each encoder output \\(\\hat{x}_t\\) into a query vector \\(q_t = W_q \\hat{x}_t\\) and a key vector \\(k_t = W_k \\hat{x}_t\\), then taking the cosine similarity between the query of the current token and the key of the previous token:\n\n\\[\np_t = 1 - \\frac{q_t^\\top k_{t-1}}{\\|q_t\\|\\;\\|k_{t-1}\\|} \\quad (t>1), \\qquad p_1 = 1.0\n\\]\n\nA boundary indicator \\(b_t\\) is set to 1 whenever \\(p_t \\ge 0.5\\) (otherwise 0).  \nThe first token is always marked as a boundary so the sequence always starts a new chunk.\n\nThe **downsampler** then keeps only the representations at positions where \\(b_t = 1\\), effectively compressing low‑information regions while preserving high‑information content at the chosen granularity.\n\nThus, dynamic chunking adapts chunk boundaries by measuring contextual change via cosine similarity between adjacent representations and selecting boundaries where this similarity drops below a learned threshold.  \n\n[arXiv:2507.07955v2, PDF page 3]  \n[arXiv:2507.07955v2, PDF page 6]",
+    "status": "ok",
+    "http_status": 200,
+    "first_token_ms": 944.48,
+    "total_ms": 1302.37,
+    "tokens_in": 3251,
+    "tokens_out": 579,
+    "total_tokens": 3830,
+    "rate_limit_headers": {
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-remaining-requests": "997",
+      "x-ratelimit-reset-requests": "4m19.2s",
+      "x-ratelimit-limit-tokens": "8000",
+      "x-ratelimit-remaining-tokens": "3949",
+      "x-ratelimit-reset-tokens": "30.382s"
+    }
+  },
+  "retrieved_sources": [
+    {
+      "rank": 1,
+      "chunk_id": "0807f87246efbcb2",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 3",
+      "page_number": 3,
+      "chunk_index": 0,
+      "bm25_score": 15.788018,
+      "token_count": 391,
+      "section_candidates": [
+        "!",
+        "Dechunking",
+        "(d) Upsampler",
+        "(c) Smoothing Module",
+        "ℳ",
+        "(b) Downsampler",
+        "Chunking",
+        "(a) Routing Module",
+        "ℰ",
+        "Dynamic Chunking"
+      ],
+      "text": "h e _ e n d _ o f _ t o k e n s ! *̅\n !\n\n Dechunkinĝ\n\n .\n (d) Upsampler\n\n 1 −'!\"$ 1 −'!\"# 1 −'!\n .\n\n '!\"% '!\"$ '!\"# '!\n\n .̅\n ℳ (c) Smoothing Module\n 0\"#$\n\n /0\"\n +\"\n (b) Downsampler\n\n -\n\n Chunking /0\n (a) Routing Module\n ℰ\n T h e _ e n d _ o f _ t o k e n s Dynamic Chunking\n\nFigure 1: (left) Architectural overview of H-Net with a two-stage hierarchical design (𝑆= 2). (right) Dynamic Chunking\n(DC). ( bottom-right ) Key components of a chunking layer: (a) a routing module for dynamically drawing chunk\nboundaries, and (b) a downsampler that selectively retains vectors based on boundary indicators, reducing sequence length\nwhile preserving semantically significant positions. ( top-right ) Key components of a dechunking layer: (c) a smoothing\nmodule for converting discrete chunks into interpolated representations, and (d) an upsampler that restores compressed\nvectors to their original resolution based on boundary indicators. Linear in equation (3) and STE in equation (9) are omitted\nin the illustration for brevity.\n\nlanguage model: with a single stage of dynamic chunking, a byte-level H-Net matches the perplexity and downstream\nperformance of a strong BPE-tokenized Transformer at sizes exceeding 1B parameters. Empirically, the dynamic\nchunking module naturally compresses data to a similar resolution as BPE tokenizers (4.5-5 bytes/chunk) and qualitatively\nlearns meaningful boundaries, all without any external supervision or heuristics.\n\n 3"
+    },
+    {
+      "rank": 2,
+      "chunk_id": "92919aca7e84086d",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 31",
+      "page_number": 31,
+      "chunk_index": 0,
+      "bm25_score": 15.557169,
+      "token_count": 700,
+      "section_candidates": [
+        "A",
+        "Related Work",
+        "A.1",
+        "Autoregressive Tokenizer-free Architectures"
+      ],
+      "text": "A Related Work\n\nThe fundamental challenge of transforming raw sequential data into computationally efficient representations manifests\nacross multiple domains through implicit chunking processes. In language modeling, this challenge is addressed through\ntokenization using static vocabularies derived from frequency-based algorithms such as Byte-Pair Encoding (BPE) (Sennrich,\nHaddow, and Birch 2015) in GPT models (Radford et al. 2019; Brown et al. 2020) and SentencePiece (Kudo and Richardson\n2018) in Llama architectures (Touvron, Martin, et al. 2023; Grattafiori et al. 2024). Computer vision addresses similar\nchallenges through spatial pooling operations (Ronneberger, Fischer, and Brox 2015) that aggregate neighboring pixels\ninto meaningful representations.\n\nDespite achieving strong empirical performance, it is widely known that traditional tokenization approaches in language\nmodels suffer from fundamental limitations that constrain model capabilities. Fixed vocabularies exhibit biases toward high-\nresource languages, demonstrate fragility when handling adversarial inputs, and show lower performance on character-level\ntasks (Petrov et al. 2023; Ahia, Kumar, Gonen, Kasai, et al. 2023; Belinkov and Bisk 2017; Sun et al. 2020; Xue et al. 2022).\nThese limitations stem from the static nature of predefined vocabularies, which cannot adapt their chunking strategies to\ninput content or context.\n\nTo address these constraints, tokenizer-free methods have emerged that avoid the reliance on predefined vocabularies.\n\n • In Appendix A.1, we discuss the most directly related prior work on autoregressive sequence models, extending the\n overview from Section 1.\n\n • In Appendix A.2, we discuss non-autoregressive models. We note that essentially all autoregressive architectures\n can be turned into non-autoregressive architectures (including our proposed H-Net), and vice versa, which provide\n possible extensions of H-Net in future work. However, we provide this delineation because it marks an important\n difference in motivation that influences design considerations and downstream evaluations.\n\n • Appendix A.3 mentions other works in non-language modalities related to tokenization.\n\nWe summarize our discussion on tokenizer-free architectures in Table 6.\n\nA.1 Autoregressive Tokenizer-free Architectures\n\nAs outlined in Section 1, prior work on autoregressive tokenizers for architectures can be divided into four categories:\n\n 1. Non-hierarchical isotropic architectures.\n 2. Hierarchical architectures with static chunking strategies, where chunk boundaries are content-agnostic (usually\n some variant of fixed-width pooling).\n\n 3. Hierarchical architectures with external chunking strategeies, where chunk boundaries are provided by an external\n function or module.\n\n 4. Hierarchical architectures with dynamic chunking strategies, where chunk boundaries are content-dependent and\n learned end-to-end.\n\nA.1.1 Isotropic Architectures\n\nThe most direct approach to modeling language with tokenizers is to simply model raw byte sequences with a standard\nsequence model architecture. Since this naive approach suffers from computational challenges on long sequences, Mam-\nbaByte (Wang et al. 2024) proposed using a state space model for its linear-time efficiency. We similarly use Mamba(-2)\n(Dao and Gu 2024) layers in the"
+    },
+    {
+      "rank": 3,
+      "chunk_id": "cfc133654280f906",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 34",
+      "page_number": 34,
+      "chunk_index": 0,
+      "bm25_score": 13.898522,
+      "token_count": 700,
+      "section_candidates": [
+        "A.3",
+        "Other Tokenization-related Work"
+      ],
+      "text": "modeling. Word-based self-attention fusion (WSF) (Sreedhar et al. 2023) proposes a similar pooling strategy for encoder\nlanguage models.\n\nHierarchical (Dynamic). MANTa (Godey et al. 2022) introduces an end-to-end method that predicts segmentation\nboundaries and pools bytes into blocks using a matching objective. MrT5 (Kallini et al. 2025) is a recent method improving\non ByT5 with a gating mechanism that allows for explicit dynamic token-merging at inference time, reducing sequence\nlengths by up to 80%.\n\nA.3 Other Tokenization-related Work\nTokenizers for Other Modalities. While computer vision pipelines do not use tokenizers like BPE in the same way\nas language models do, they frequently need to turn raw perceptual data (images and videos) into shorter sequences of\nrepresentations. One approach is the simple patchification step first introduced by the Vision Transformer (ViT) (Dosovitskiy\net al. 2021). However, images, videos, and audio can have varying amounts of semantic content and non-uniform\nredundancies. A number of more recent approaches attempt to produce variable length tokenizations that adapt to the\ninformation content of the data, Which performs a more similar role to tokenization in language models. This can be done\nin the latent space of an autoencoder (Yu, Weber, et al. 2024; Duggal et al. 2024) or through explicit token merging (or \"run\nlength encoding\") with heuristics (Bolya et al. 2022; Choudhury et al. 2024). In the audio domain, SlowAE (Dieleman et al.\n2021) proposes a joint autoencoder with autoregressive modeling that finds semantic segmentation boundaries, which\nresembles H-Net’s approach at a high level.\n\nFAST (Lin et al. 2025) introduces a tokenizer for robotics, Which tokenizes continuous control actions by combining the\nDiscrete Cosine Transform (DCT) with BPE.\n\nVocabulary Scaling. While scaling laws for language models have generally kept tokenizers fixed (Kaplan et al. 2020;\nHoffmann et al. 2022; Grattafiori et al. 2024), recent works have showed that the tokenizer also warps scaling laws, in fact\nmore so than model architecture changes (Mayilvahanan et al. 2025). Tao et al. (2024) and Huang et al. (2025) directly show\nthat it is more optimal to scale an LLM’s vocabulary together with the rest of the model parameters.\n\nIn H-Nets, which are designed to operate over higher resolution raw data, the actual vocabulary can be kept minimal, but\nthe chunking mechanism can be viewed as an implicit \"tokenizer\" with infinite vocabulary. As H-Nets scale in size, one\nexpects that more iterations of hierarchy can be added (increasing effective chunk size), or the chunk size can directly be\nincreased to leverage parameters more efficiently. This resembles the idea of increasing a vocabulary in tokenized models\n(which would generally increase the average length of tokens).\n\nSuperBPE (Liu et al. 2025) shows that allowing vocabulary tokens to cross whitespace boundaries can also improve"
+    },
+    {
+      "rank": 4,
+      "chunk_id": "eeeda8c26750dffe",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 32",
+      "page_number": 32,
+      "chunk_index": 1,
+      "bm25_score": 12.175122,
+      "token_count": 418,
+      "section_candidates": [],
+      "text": " is a concurrent\nwork that augments SpaceByte with additional stages of hierarchy using fixed-width chunking. Specifically, AU-Net 2 is\nSpaceByte with minor architectural modifications, while AU-Net 3 (and AU-Net 4) add additional levels of hierarchical\nwith width-2 downsampling.\n\nIn this work, we show that SpaceByte’s delimiter chunking strategy can be a very powerful baseline on appropriate\nlanguages – competitive with or outperforming traditional tokenizers on English and code – when augmented with several\nof H-Net’s additional techniques (Section 3.1, Section 3.3, Figure 5, Figure 9).\n\nEntropy-based methods. Another approach to circumvent the delimiter dependency is using the autoregressive\nconditional entropy as a heuristic to identify semantic boundaries. This was first proposed by the Dynamic Pooling\nTransformer (DPT) (Nawrot, Chorowski, et al. 2023), which detects entropy spikes that correlate with semantic transitions.\nThe recent Byte Latent Transformer (BLT) (Pagnoni et al. 2024) employs entropy thresholds computed by a separate\npre-trained model to determine chunking boundaries.\n\nDespite showing promise, these entropy-based approaches face several practical limitations. First, they require extensive\ndomain-specific hyperparameter tuning to establish appropriate entropy thresholds, reducing their general applicability.\nSecond, they still fall behind in performance; for example, BLT necessitates an extra 3B parameters (at the 8B scale) solely\nfor multi-gram hash embeddings to match BPE Transformer baselines. Finally, these methods also cannot be extended\nhierarchically because computing cross-entropy loss requires access to target vocabularies, which are unavailable for\nintermediate latent representations in multi-stage architectures.\n\nIn this work, we do not compare against BLT because of its complexity: (i) necessitating training an auxiliary language\nmodel to provide proxy autoregressive conditional entropies (ii) converting it into an external neural tokenizer through\n\n 32"
+    },
+    {
+      "rank": 5,
+      "chunk_id": "13ae62fd9537d32a",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 6",
+      "page_number": 6,
+      "chunk_index": 0,
+      "bm25_score": 12.08927,
+      "token_count": 700,
+      "section_candidates": [
+        "2.2",
+        "Dynamic Chunking (DC)"
+      ],
+      "text": "• First, we ensure the model width (often referred to as 𝑑model for isotropic architectures) is monotone in the hierarchy:\n 𝐷0 ≤𝐷1 ≤· · · ≤𝐷𝑆. This allows increasing compute and parameters used in the main network without significantly\n increasing its depth.\n\n • Second, using efficient and powerful SSM layers in the outer networks allow reducing the number of layers used\n compared to similar prior architectures that only used Transformer layers (Slagle 2024); in this paper, we always\n stick to four layers (or the equivalent of four Mamba layers) in each encoder/decoder network.\n\nTo handle the changes in dimensions without an additional linear layer, we adopt the technique used in SpaceByte (Slagle\n2024) with the marginal change: to expand dimensions (i.e., 𝐷𝑠→𝐷𝑠+1), we append all vectors with a shared trainable vector\nof dimension 𝐷𝑠+1 −𝐷𝑠; to reduce dimensions (i.e., 𝐷𝑠+1 →𝐷𝑠), we take the first 𝐷𝑠dimensions from each vector.\n\nWe note that H-Net’s performance can likely be improved with more careful tuning of the layer allocation and hyperpa-\nrameters between sub-networks.\n\n2.2 Dynamic Chunking (DC)\n\nH-Net learns chunking boundaries through end-to-end training, allowing it to identify semantically meaningful units\nadaptively. Furthermore, this dynamic approach enables the model to allocate computational resources efficiently by\ncompressing low-information regions while preserving high-information content at appropriate granularity.\n\n2.2.1 Chunking Layer\nThe chunking layer (Chunk in equation (2)) contains a routing module and downsampler, as illustrated in Figure 1-\n( bottom-right ).\n\nRouting Module. In natural data, meaningful boundaries tend to emerge at points of contextual or semantic shift. From\nthis observation, we add an inductive bias by measuring the similarity between adjacent representations: when context\nchanges, consecutive vectors should exhibit lower similarity. The routing module implements this intuition through\ncosine similarity between adjacent encoder outputs. Given encoder outputs ˆ𝑋, it calculates boundary probabilities 𝑝𝑡and\nboundary indicators 𝑏𝑡as follows:\n\n 1 𝑞⊤𝑡𝑘𝑡−1\n 𝑞𝑡= 𝑊𝑞ˆ𝑥𝑡, 𝑘𝑡= 𝑊𝑘ˆ𝑥𝑡, 𝑝𝑡= 1 − ∈[0, 1], 𝑏𝑡= 1{𝑝𝑡≥0.5}, (4)\n 2 ∥𝑞𝑡∥∥𝑘𝑡−1∥\nwhere 𝑝1 = 1.0 by definition, ensuring the sequence begins with a boundary. This formulation scales cosine similarity into\na boundary score or probability: ideally, when consecutive vectors ˆ𝑥𝑡−1 and ˆ𝑥𝑡span a semantic boundary (e.g., between\nmorphemes, words, or phrases), their projections"
+    }
+  ]
+}

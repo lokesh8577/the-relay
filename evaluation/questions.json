@@ -1,0 +1,56 @@
+[
+  {
+    "id": "Q01",
+    "question": "Why does the Transformer architecture use self-attention instead of recurrent layers?",
+    "expected_paper": "1706.03762",
+    "expected_pages": [6]
+  },
+  {
+    "id": "Q02",
+    "question": "How does scaled dot-product attention use the key dimension to scale attention scores?",
+    "expected_paper": "1706.03762",
+    "expected_pages": [4]
+  },
+  {
+    "id": "Q03",
+    "question": "What is the purpose of multi-head attention in the Transformer?",
+    "expected_paper": "1706.03762",
+    "expected_pages": [5]
+  },
+  {
+    "id": "Q04",
+    "question": "What is Moshi and what problem does it address in real-time spoken dialogue?",
+    "expected_paper": "2410.00037",
+    "expected_pages": [6]
+  },
+  {
+    "id": "Q05",
+    "question": "How does the Moshi system represent or process audio for speech interaction?",
+    "expected_paper": "2410.00037",
+    "expected_pages": [6]
+  },
+  {
+    "id": "Q06",
+    "question": "What makes real-time spoken dialogue different from a conventional text-based dialogue system in Moshi?",
+    "expected_paper": "2410.00037",
+    "expected_pages": [2, 6]
+  },
+  {
+    "id": "Q07",
+    "question": "What problem does dynamic chunking address in end-to-end hierarchical sequence modeling?",
+    "expected_paper": "2507.07955",
+    "expected_pages": [2, 6]
+  },
+  {
+    "id": "Q08",
+    "question": "How does dynamic chunking determine or adapt sequence chunk boundaries?",
+    "expected_paper": "2507.07955",
+    "expected_pages": [3]
+  },
+  {
+    "id": "Q09",
+    "question": "Why is hierarchical sequence modeling useful when processing long sequences?",
+    "expected_paper": "2507.07955",
+    "expected_pages": [22]
+  }
+]

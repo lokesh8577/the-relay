@@ -1,0 +1,8 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+
+# Temporary backup
+results/results_before_answer_merge.csv

@@ -1,0 +1,4 @@
+configuration,requests,successful,correct,wrong,correct_pct,wrong_pct,validator_pass_pct,avg_tokens_in,avg_tokens_out,ttft_p50_ms,ttft_p95_ms,total_p50_ms,total_p95_ms
+small_300_30,3,3,1,2,33.33,66.67,66.67,1779.67,615.67,1095.47,1101.74,1379.88,1474.94
+baseline_500_50,3,3,2,1,66.67,33.33,66.67,2442.33,639.0,1084.51,1328.46,1417.55,1746.34
+large_700_70,3,3,3,0,100.0,0.0,100.0,3357.33,573.67,944.48,1218.57,1302.37,1650.01

@@ -1,0 +1,111 @@
+{
+  "request_id": "large_700_70-Q04",
+  "question_id": "Q04",
+  "question": "What is Moshi and what problem does it address in real-time spoken dialogue?",
+  "configuration": "large_700_70",
+  "answer": "Moshi is a **speech‑text foundation model designed for real‑time spoken dialogue**.  \nIts architecture builds on a text‑language‑model backbone (Helium) and a neural audio codec (Mimi) that jointly generate **semantic, acoustic, and text tokens in a hierarchical, streaming fashion** for both the user and the system. This allows Moshi to operate in a **full‑duplex** manner—processing the user’s speech and producing the system’s speech simultaneously—while also producing time‑aligned text tokens when using its Inner Monologue feature.  \n\nThe model addresses several long‑standing problems in real‑time spoken dialogue:\n\n1. **Cascaded pipeline limitations** – Prior systems typically ran an ASR followed by a text generator and a streaming TTS, which made it difficult to handle overlapping speech and limited the use of linguistic context.  \n2. **Lack of full‑duplex capability** – Earlier full‑duplex attempts (e.g., dGSLM) did not run online, did not leverage a text language model, and only modeled semantic tokens, missing acoustic nuance.  \n3. **Missing acoustic modeling** – Moshi’s hierarchical token generation includes acoustic tokens, enabling the model to produce a wide range of emotions, voices, and acoustic conditions.  \n4. **Efficient use of linguistic and non‑linguistic information** – By modeling two separate streams of semantic and acoustic tokens, Moshi can exploit all information from the user while generating speech in real time.\n\nThese innovations make Moshi the first audio‑language model that successfully tackles the challenges of full‑duplex, real‑time spoken dialogue, combining linguistic knowledge, acoustic detail, and streaming generation.  \n\n[arXiv:2410.00037v1, PDF page 6]",
+  "decision": "accepted",
+  "validation": {
+    "passed": true,
+    "decision": "accept",
+    "issues": [],
+    "citation_count": 1,
+    "retrieved_source_count": 5,
+    "unsupported_citations": []
+  },
+  "model_metrics": {
+    "model": "openai/gpt-oss-20b",
+    "backend": "groq",
+    "response": "Moshi is a **speech‑text foundation model designed for real‑time spoken dialogue**.  \nIts architecture builds on a text‑language‑model backbone (Helium) and a neural audio codec (Mimi) that jointly generate **semantic, acoustic, and text tokens in a hierarchical, streaming fashion** for both the user and the system. This allows Moshi to operate in a **full‑duplex** manner—processing the user’s speech and producing the system’s speech simultaneously—while also producing time‑aligned text tokens when using its Inner Monologue feature.  \n\nThe model addresses several long‑standing problems in real‑time spoken dialogue:\n\n1. **Cascaded pipeline limitations** – Prior systems typically ran an ASR followed by a text generator and a streaming TTS, which made it difficult to handle overlapping speech and limited the use of linguistic context.  \n2. **Lack of full‑duplex capability** – Earlier full‑duplex attempts (e.g., dGSLM) did not run online, did not leverage a text language model, and only modeled semantic tokens, missing acoustic nuance.  \n3. **Missing acoustic modeling** – Moshi’s hierarchical token generation includes acoustic tokens, enabling the model to produce a wide range of emotions, voices, and acoustic conditions.  \n4. **Efficient use of linguistic and non‑linguistic information** – By modeling two separate streams of semantic and acoustic tokens, Moshi can exploit all information from the user while generating speech in real time.\n\nThese innovations make Moshi the first audio‑language model that successfully tackles the challenges of full‑duplex, real‑time spoken dialogue, combining linguistic knowledge, acoustic detail, and streaming generation.  \n\n[arXiv:2410.00037v1, PDF page 6]",
+    "status": "ok",
+    "http_status": 200,
+    "first_token_ms": 1249.03,
+    "total_ms": 1688.64,
+    "tokens_in": 3192,
+    "tokens_out": 775,
+    "total_tokens": 3967,
+    "rate_limit_headers": {
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-remaining-requests": "997",
+      "x-ratelimit-reset-requests": "4m19.2s",
+      "x-ratelimit-limit-tokens": "8000",
+      "x-ratelimit-remaining-tokens": "4008",
+      "x-ratelimit-reset-tokens": "29.94s"
+    }
+  },
+  "retrieved_sources": [
+    {
+      "rank": 1,
+      "chunk_id": "4fcc165c9ce3d51a",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 63",
+      "page_number": 63,
+      "chunk_index": 0,
+      "bm25_score": 21.562124,
+      "token_count": 689,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nUSER: Hello, I wanted to talk to you about The Three Musketeers.\nMOSHI: Of course, happy to help! The Three Musketeers is a great book, and it is a\ngreat place to start if you’re looking to become more familiar with classic literature.\nUSER: Wow, this is fantastic. Can you tell me more about the story?\nMOSHI: Sure, the book is set in 17th century France and tells the tale of d’Artagnan,\na young man who aims to become a member of the prestigious Musketeers.\nUSER: So what is the story about?\nMOSHI: The story follows d’Artagnan as he travels to Paris to accomplish his\ngoal. During his journey there, he meets and befriends three of the most powerful\nMusketeers of the time, Athos, Porthos and Aramis.\nUSER: Wow, it sounds exciting. What else does the story focus on?\nMOSHI: The book also explores the political and social issues of the time, including\nthe abuses of power and the inequalities in society.\nUSER: That sounds interesting. Can you tell me more about the characters?\nMOSHI: Sure, d’Artagnan is a courageous and ambitious character who is determined\nto prove himself. Athos, Porthos and Aramis are all experienced and skilled\nMusketeers who are also known for their chivalry and loyalty to king.\nUSER: I can see this is a great book for people who are interested in history and\nadventure. How would you rate it?\nMOSHI: I would definitely give it a 4 or 5 out of 5. The Three Musketeers is a classic\nbook that has stood the test of time and is still popular today.\nUSER: Great, I really appreciate all your help. Thank you.\nMOSHI: No problem, I’m glad I could assist you.\n\nUSER: John Steinbeck is an influential American writer. Can you tell me more about\nhis life and work?\nMOSHI: Sure, John Steinbeck was born on February 27th, 1902, in Salinas, California,\nand he died on December 20th, 1968, in New York City. He was one of the most\npopular writers of his time and is often considered a giant of American letters.\nUSER: And what are some of your most famous pieces?\nMOSHI: His most famous novel is probably The Grapes of Wrath, which won the\nPulitzer Prize. But other notable works include Of Mice and Men, The Red Pony,\nand East of Eden.\nUSER: And which themes does his work often explore?\nMOSHI: Steinbeck often wrote about the hardships of working-class people, social and\neconomic injustices. And the struggle for survival in difficult times.\nUSER: So he’s like a social commentator.\nMOSHI: Kind of like that. He really wanted to write about the lives of ordinary people\nand to highlight the challenges they faced.\nUSER: That’s fascinating. I did not know that. Well, thank you for giving me some\ninsight into John Steinbeck’s life and work.\nMOSHI: You’re welcome.\n\n 63"
+    },
+    {
+      "rank": 2,
+      "chunk_id": "c3249b8b5c4bd39a",
+      "paper_id": "2507.07955",
+      "paper_title": "Dynamic Chunking",
+      "paper_version": 2,
+      "citation": "arXiv:2507.07955v2, PDF page 34",
+      "page_number": 34,
+      "chunk_index": 1,
+      "bm25_score": 18.056673,
+      "token_count": 387,
+      "section_candidates": [
+        "A.3",
+        "Other Tokenization-related Work"
+      ],
+      "text": "increasing effective chunk size), or the chunk size can directly be\nincreased to leverage parameters more efficiently. This resembles the idea of increasing a vocabulary in tokenized models\n(which would generally increase the average length of tokens).\n\nSuperBPE (Liu et al. 2025) shows that allowing vocabulary tokens to cross whitespace boundaries can also improve\nperformance. This is related to H-Net’s motivation of higher-level chunking of words into phrases; empirically, Figure 4\nshows how the 2-stage H-Net finds semantic multi-word groups in the inner stage.\n\nCross-Tokenizer Transfer. Minixhofer, Ponti, and Vulić (2024) and Minixhofer, Vulić, and Ponti (2025) address the\nproblem of tokenizer transfer, or adapting models across different tokenizers (for example for cross-language or cross-\nmodality usage, or for knowledge distillation).\n\nOther Effects of Tokenization. Lee et al. (2024) discuss the effects that tokenization has on arithmetic in LLMs. For\nexample, comparing the performance of left-to-right vs. right-to-left tokenization. Hayase et al. (2024) show that examining\nthe vocabulary of a BPE tokenizer leaks information about the data mix that it was trained on.\n\nTokenization Theory. Schmidt et al. (2024) examined the hypothesis that the primary role of tokenization is to shrink\nthe input sequence length. They invented a new tokenizer that has even higher compression rates than BPE (actually, they\nkeep the same vocabulary but simply find different segmentations that are more compressed) yet leads to worse language\nmodels, providing evidence against the hypothesis.\n\nRajaraman, Jiao, and Ramchandran (2024) showed that for certain data distributions, applying tokenization qualitatively\nchanges what Transformers can learn.\n\n 34"
+    },
+    {
+      "rank": 3,
+      "chunk_id": "ba664356c4420e5c",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 36",
+      "page_number": 36,
+      "chunk_index": 0,
+      "bm25_score": 17.773103,
+      "token_count": 700,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\n6.1 Toxicity analysis\n\nThe scientific community has devoted in the last years some effort to address bias and\ntoxicity problems for text generation models. In contrast, audio safety is far less developed.\nIt is not straightforward to compare audio and text models in an apple-to-apple comparison,\nas they differ in their usage, and multiple meanings are conveyed by non-verbal signal (irony,\ntone, etc.). In spite of these limitations and in order to facilitate the comparison of Moshi\nwith text generation models, in this first analysis we restrict our toxicity analysis to the text\nproduced by the model. We adopt the ALERT benchmark18 (Tedeschi et al., 2024), which\nevaluates safety under multiple categories (hate, self-harm, weapon, crime, sex, substance).\nTable 18 in Appendix D reports our detailed toxicity analysis on this benchmark. The\naggregated score for Moshi and popular text-only models is as follows:\n\n Category Moshi GPT-3.5 GPT-4 Llama 2 Alpaca Vicuna Falcon Mistral Mixtral Zephyr OLMo\n\n Overall Safety Score 83.05 96.95 99.18 99.98 62.13 95.75 88.11 75.45 98.22 77.86 85.90\n\n With this analysis, we see that Moshi falls into the middle of this table in terms of rank.\nThe industry models perform the best, which is expected considering the massive amount of\nprivate annotation, red-teaming and feedback loop from which these models have benefited.\n\n6.2 Regurgitation analysis\n\nThe problem of a model generating content which it has seen at training time, which we refer\nto as regurgitation, is closely related to overfitting: The more a model has seen a sequence or\na subsequence during training, the more likely it is to generate this exact sequence during the\ngeneration process. Note, for a speech model, it is not only the text that can be regurgitated,\nbut also the voice pitch, tone, and potentially the background melody if present at training\ntime. It is therefore important to mitigate19 potential intellectual property issues related\nto regurgitation, such as reproduction of copyrighted content or audio generation with the\nvoice of a person without permission.\n\nEvaluation protocol. For each model, we measure the proportion of generations (out\nof 100,000) that reproduce the most frequent audio segment detected in our whole training\ndataset. For this purpose, we have first developed a matching system that detects the most\nfrequent audio segments, see Appendix B. We select the most frequent one that is long\nenough (16 seconds) and easy to detect from text and audio. We measure the proportion of\ngenerations that exactly match this most frequent segment. For the matching, we initially\nuse both audio and text matching, but observe that text-based matching has a higher recall\nfor the initial matching step. We manually verify all the generations to filter out outliers\nthat are not exact matches.\n\nUnconditioned and prompted generation: We first measure what happens with unconditional\ngeneration, to evaluate whether the model tends to generate specific sequences when not\nguided by a prompt. In a complementary manner, we prompt the model with the 3 first\n\n18."
+    },
+    {
+      "rank": 4,
+      "chunk_id": "d5458d4d0df773d9",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 6",
+      "page_number": 6,
+      "chunk_index": 0,
+      "bm25_score": 17.279433,
+      "token_count": 515,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nFigure 1: Overview of Moshi. Moshi is a speech-text foundation model which enables\nreal-time spoken dialogue. The main components of Moshi’s architecture are: a bespoke\ntext language model backbone (Helium, see Section 3.2); a neural audio codec with residual\nvector quantization and with semantic knowledge distilled from a self-supervised speech\nmodel (Mimi, Section 3.3); the streaming, hierarchical generation of semantic and acoustic\ntokens for both the user and Moshi, along with time-aligned text tokens for Moshi when\nusing Inner Monologue (Section 3.4).\n\nbeen proposed by Wang et al. (2024), with an ASR system running in parallel to a text\ngenerator that feeds into a streaming TTS. While this allows modeling more complex sce-\nnarios than previous approaches, it still relies on a cascaded pipeline and models both the\nuser’s and the system’s speech into a single token stream, which is challenging in presence\nof significant overlap. The only previous full-duplex dialogue system is dGSLM (Nguyen\net al., 2023), which models user and system speech as separate audio token streams and pro-\nposes a Siamese architecture to process both streams jointly. While dGSLM is full-duplex,\nit remains a proof-of-concept: it does not run in an online fashion, it does not benefit from\nthe knowledge of a text language model, and it does not model acoustic information as it\nonly models semantic tokens. Moshi addresses these limitations altogether: by modeling\ntwo streams of semantic and acoustic tokens hierarchically, Moshi is full duplex and can\nexploit all the information from the user (linguistic and non-linguistic) while producing\nspeech in real time. Thanks to text pretraining and Inner Monologue, Moshi benefits from\nthe knowledge of its Helium backbone. Finally, as the model produces acoustic tokens along\nwith text and semantic tokens, it can generate an arbitrary range of emotions, voices and\nacoustic conditions. To the best of our knowledge, Moshi is the first audio language model\nthat successfully addresses the many aforementioned challenges of spoken dialogue.\n\n3 Model\n\n3.1 Overview\n\nMoshi is a multi-stream speech-to-speech Transformer model, which allows for full-duplex\nspoken dialogue with a user thanks to an innovative architecture summarized in Figure 1.\n\n 6"
+    },
+    {
+      "rank": 5,
+      "chunk_id": "6a1f9a5ff5efeb4f",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 62",
+      "page_number": 62,
+      "chunk_index": 0,
+      "bm25_score": 17.04997,
+      "token_count": 560,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nAppendix F. Synthetic transcripts generation for fine-tuning\n\nIn this section, we provide examples of synthetic transcripts.\n\nF.1 General knowledge\n\n USER: Hey, I’ve been researching a bit about information theory, and I’ve come across\n this concept of entropy. What is it?\n MOSHI: Oh, that’s an interesting topic. Entropy, in information theory, is a measure\n of the average level of information, surprise, or uncertainty inherent to a random\n variable’s p ossible outcomes. It’s actually a very useful concept in communication\n and computer science.\n USER: So how does it work?\n MOSHI: Entropy is calculated using a formula where it’s negative sum of the products\n of each possible outcome’s probability and its logarithm to a base, usually base-2 or\n base-e. T he higher the entropy, the greater the uncertainty or information, and vice\n versa.\n USER: Okay, that’s interesting. How does it relate to communication and computer\n science?\n MOSHI: In communication and computer science, entropy plays a crucial role, espe-\n cially in the field of error-correcting codes and compression methods. Imagine a\n source sending a message, and each bit has a certain probability.\n USER: Yeah.\n MOSHI: Entropy tells us how much information we need to send from the source to\n the receiver to ensure reliable communication. The lower the entropy, the fewer bits\n are needed, and the less information is lost in transmission or reception.\n USER: That’s fascinating. How does it relate to statistical thermodynamics,\n MOSHI: That’s a good question. Entropy in information theory is directly analogous\n to the entropy in statistical thermodynamics. It’s a measure of the unavailability of\n a system’s energy to perform work. The higher the entropy, the more disordered the\n system. In information theory, entropy measures the amount of missing information\n that could be replaced.\n USER: Wow. So entropy can be used to measure disorder in both physical and digital\n systems.\n MOSHI: Exactly and entropy can also be used to measure the amount of missing in-\n formation or the amount of compressed data after encoding a message. It’s quite\n versatile, isn’t it?\n USER: Yeah, very versatile. Thank you for explaining all this to me. It’s really fasci-\n nating.\n MOSHI: You’re welcome. Information theory and entropy are indeed fascinating areas\n of study with many applications in various fields.\n USER: I’m glad I got to learn about it today.\n MOSHI: It’s always good to expand your knowledge.\n USER: Indeed.\n MOSHI: There’s so much to learn about.\n\n 62"
+    }
+  ]
+}

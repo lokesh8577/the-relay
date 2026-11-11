@@ -1,0 +1,36 @@
+{
+    "total_papers": 3,
+    "downloaded": 3,
+    "papers": [
+        {
+            "name": "Attention Is All You Need",
+            "arxiv_id": "1706.03762",
+            "version": 7,
+            "filename": "attention_is_all_you_need_v7.pdf",
+            "url": "https://arxiv.org/pdf/1706.03762v7",
+            "pages": 15,
+            "bytes": 2215244,
+            "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697"
+        },
+        {
+            "name": "Moshi",
+            "arxiv_id": "2410.00037",
+            "version": 1,
+            "filename": "moshi_v1.pdf",
+            "url": "https://arxiv.org/pdf/2410.00037v1",
+            "pages": 66,
+            "bytes": 4694312,
+            "sha256": "a687144cc77bea86b0c60ae800ccb1d3e0816033fa5c7960388fe29a0dbfcfac"
+        },
+        {
+            "name": "Dynamic Chunking",
+            "arxiv_id": "2507.07955",
+            "version": 2,
+            "filename": "dynamic_chunking_v2.pdf",
+            "url": "https://arxiv.org/pdf/2507.07955v2",
+            "pages": 39,
+            "bytes": 1375282,
+            "sha256": "04a2b32e6e82853cfc23c5db132750874a86cde99219ec6f664128f4aa83122f"
+        }
+    ]
+}

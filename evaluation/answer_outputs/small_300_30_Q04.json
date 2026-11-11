@@ -1,0 +1,108 @@
+{
+  "request_id": "small_300_30-Q04",
+  "question_id": "Q04",
+  "question": "What is Moshi and what problem does it address in real-time spoken dialogue?",
+  "configuration": "small_300_30",
+  "answer": "**Moshi** is a speech‑text foundation model designed for real‑time spoken dialogue.  \nIt is a multi‑stream, speech‑to‑speech Transformer that enables *full‑duplex* interaction: the model simultaneously processes the user’s speech and generates a spoken reply while also producing aligned text.  \n\nThe architecture models two streams of tokens—semantic and acoustic—hierarchically for both the user and Moshi. This allows the system to generate speech in real time, to exploit linguistic knowledge from a pre‑trained text language model (Helium) and to produce a wide range of emotions, voices and acoustic conditions.  \n\nMoshi addresses several shortcomings of earlier real‑time dialogue systems:\n\n* Prior cascaded pipelines (ASR → text generator → TTS) do not run online and treat the user’s and system’s speech as a single token stream, making it difficult to handle overlapping speech.  \n* The only previous full‑duplex system, dGSLM, is a proof‑of‑concept that does not operate online, does not use a text language model, and does not model acoustic information.  \n* Moshi overcomes all of these issues by running in an online, full‑duplex fashion, leveraging text pre‑training, modeling acoustic tokens, and generating speech and text simultaneously.  \n\nThus, Moshi is the first audio‑language model that successfully tackles the challenges of real‑time spoken dialogue, providing online, full‑duplex interaction with rich acoustic and linguistic output.  \n\n[arXiv:2410.00037v1, PDF page 6]  \n[arXiv:2410.00037v1, PDF page 6]",
+  "decision": "accepted",
+  "validation": {
+    "passed": true,
+    "decision": "accept",
+    "issues": [],
+    "citation_count": 1,
+    "retrieved_source_count": 3,
+    "unsupported_citations": []
+  },
+  "model_metrics": {
+    "model": "openai/gpt-oss-20b",
+    "backend": "groq",
+    "response": "**Moshi** is a speech‑text foundation model designed for real‑time spoken dialogue.  \nIt is a multi‑stream, speech‑to‑speech Transformer that enables *full‑duplex* interaction: the model simultaneously processes the user’s speech and generates a spoken reply while also producing aligned text.  \n\nThe architecture models two streams of tokens—semantic and acoustic—hierarchically for both the user and Moshi. This allows the system to generate speech in real time, to exploit linguistic knowledge from a pre‑trained text language model (Helium) and to produce a wide range of emotions, voices and acoustic conditions.  \n\nMoshi addresses several shortcomings of earlier real‑time dialogue systems:\n\n* Prior cascaded pipelines (ASR → text generator → TTS) do not run online and treat the user’s and system’s speech as a single token stream, making it difficult to handle overlapping speech.  \n* The only previous full‑duplex system, dGSLM, is a proof‑of‑concept that does not operate online, does not use a text language model, and does not model acoustic information.  \n* Moshi overcomes all of these issues by running in an online, full‑duplex fashion, leveraging text pre‑training, modeling acoustic tokens, and generating speech and text simultaneously.  \n\nThus, Moshi is the first audio‑language model that successfully tackles the challenges of real‑time spoken dialogue, providing online, full‑duplex interaction with rich acoustic and linguistic output.  \n\n[arXiv:2410.00037v1, PDF page 6]  \n[arXiv:2410.00037v1, PDF page 6]",
+    "status": "ok",
+    "http_status": 200,
+    "first_token_ms": 1095.47,
+    "total_ms": 1485.5,
+    "tokens_in": 1798,
+    "tokens_out": 767,
+    "total_tokens": 2565,
+    "rate_limit_headers": {
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-remaining-requests": "998",
+      "x-ratelimit-reset-requests": "2m52.8s",
+      "x-ratelimit-limit-tokens": "8000",
+      "x-ratelimit-remaining-tokens": "4239",
+      "x-ratelimit-reset-tokens": "28.207s"
+    }
+  },
+  "retrieved_sources": [
+    {
+      "rank": 1,
+      "chunk_id": "e4c80072cb0e510d",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 63",
+      "page_number": 63,
+      "chunk_index": 0,
+      "bm25_score": 22.909229,
+      "token_count": 300,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nUSER: Hello, I wanted to talk to you about The Three Musketeers.\nMOSHI: Of course, happy to help! The Three Musketeers is a great book, and it is a\ngreat place to start if you’re looking to become more familiar with classic literature.\nUSER: Wow, this is fantastic. Can you tell me more about the story?\nMOSHI: Sure, the book is set in 17th century France and tells the tale of d’Artagnan,\na young man who aims to become a member of the prestigious Musketeers.\nUSER: So what is the story about?\nMOSHI: The story follows d’Artagnan as he travels to Paris to accomplish his\ngoal. During his journey there, he meets and befriends three of the most powerful\nMusketeers of the time, Athos, Porthos and Aramis.\nUSER: Wow, it sounds exciting. What else does the story focus on?\nMOSHI: The book also explores the political and social issues of the time, including\nthe abuses of power and the inequalities in society.\nUSER: That sounds interesting. Can you tell me more about the characters?\nMOSHI: Sure, d’Artagnan is a courageous and ambitious character who is determined\nto prove himself. Athos, Porthos and Aramis are all experienced and skilled\n"
+    },
+    {
+      "rank": 2,
+      "chunk_id": "e8f466a4545b4631",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 62",
+      "page_number": 62,
+      "chunk_index": 0,
+      "bm25_score": 21.384047,
+      "token_count": 300,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nAppendix F. Synthetic transcripts generation for fine-tuning\n\nIn this section, we provide examples of synthetic transcripts.\n\nF.1 General knowledge\n\n USER: Hey, I’ve been researching a bit about information theory, and I’ve come across\n this concept of entropy. What is it?\n MOSHI: Oh, that’s an interesting topic. Entropy, in information theory, is a measure\n of the average level of information, surprise, or uncertainty inherent to a random\n variable’s p ossible outcomes. It’s actually a very useful concept in communication\n and computer science.\n USER: So how does it work?\n MOSHI: Entropy is calculated using a formula where it’s negative sum of the products\n of each possible outcome’s probability and its logarithm to a base, usually base-2 or\n base-e. T he higher the entropy, the greater the uncertainty or information, and vice\n versa.\n USER: Okay, that’s interesting. How does it relate to communication and computer\n science?\n MOSHI: In communication and computer science, entropy plays a crucial role, espe-\n cially in the field of error-correcting codes and compression methods. Imagine a\n source sending a message, and each bit has a certain probability.\n USER: Yeah.\n MOSHI: Entropy tells us how much information we need to send from the source to\n the receiver to ensure reliable communication. The lower the entropy"
+    },
+    {
+      "rank": 3,
+      "chunk_id": "642fe7d2c679e587",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 6",
+      "page_number": 6,
+      "chunk_index": 1,
+      "bm25_score": 20.491388,
+      "token_count": 245,
+      "section_candidates": [],
+      "text": " streams jointly. While dGSLM is full-duplex,\nit remains a proof-of-concept: it does not run in an online fashion, it does not benefit from\nthe knowledge of a text language model, and it does not model acoustic information as it\nonly models semantic tokens. Moshi addresses these limitations altogether: by modeling\ntwo streams of semantic and acoustic tokens hierarchically, Moshi is full duplex and can\nexploit all the information from the user (linguistic and non-linguistic) while producing\nspeech in real time. Thanks to text pretraining and Inner Monologue, Moshi benefits from\nthe knowledge of its Helium backbone. Finally, as the model produces acoustic tokens along\nwith text and semantic tokens, it can generate an arbitrary range of emotions, voices and\nacoustic conditions. To the best of our knowledge, Moshi is the first audio language model\nthat successfully addresses the many aforementioned challenges of spoken dialogue.\n\n3 Model\n\n3.1 Overview\n\nMoshi is a multi-stream speech-to-speech Transformer model, which allows for full-duplex\nspoken dialogue with a user thanks to an innovative architecture summarized in Figure 1.\n\n 6"
+    },
+    {
+      "rank": 4,
+      "chunk_id": "b10964eca33bddf2",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 6",
+      "page_number": 6,
+      "chunk_index": 0,
+      "bm25_score": 18.580201,
+      "token_count": 300,
+      "section_candidates": [],
+      "text": "Moshi: a speech-text foundation model for real-time dialogue\n\nFigure 1: Overview of Moshi. Moshi is a speech-text foundation model which enables\nreal-time spoken dialogue. The main components of Moshi’s architecture are: a bespoke\ntext language model backbone (Helium, see Section 3.2); a neural audio codec with residual\nvector quantization and with semantic knowledge distilled from a self-supervised speech\nmodel (Mimi, Section 3.3); the streaming, hierarchical generation of semantic and acoustic\ntokens for both the user and Moshi, along with time-aligned text tokens for Moshi when\nusing Inner Monologue (Section 3.4).\n\nbeen proposed by Wang et al. (2024), with an ASR system running in parallel to a text\ngenerator that feeds into a streaming TTS. While this allows modeling more complex sce-\nnarios than previous approaches, it still relies on a cascaded pipeline and models both the\nuser’s and the system’s speech into a single token stream, which is challenging in presence\nof significant overlap. The only previous full-duplex dialogue system is dGSLM (Nguyen\net al., 2023), which models user and system speech as separate audio token streams and pro-\nposes a Siamese architecture to process both streams jointly. While dGSLM is full-duplex,\nit remains a proof-of-concept: it does not run in an online fashion"
+    },
+    {
+      "rank": 5,
+      "chunk_id": "b0e295bc9fce83e3",
+      "paper_id": "2410.00037",
+      "paper_title": "Moshi",
+      "paper_version": 1,
+      "citation": "arXiv:2410.00037v1, PDF page 63",
+      "page_number": 63,
+      "chunk_index": 1,
+      "bm25_score": 18.487914,
+      "token_count": 300,
+      "section_candidates": [],
+      "text": " is a courageous and ambitious character who is determined\nto prove himself. Athos, Porthos and Aramis are all experienced and skilled\nMusketeers who are also known for their chivalry and loyalty to king.\nUSER: I can see this is a great book for people who are interested in history and\nadventure. How would you rate it?\nMOSHI: I would definitely give it a 4 or 5 out of 5. The Three Musketeers is a classic\nbook that has stood the test of time and is still popular today.\nUSER: Great, I really appreciate all your help. Thank you.\nMOSHI: No problem, I’m glad I could assist you.\n\nUSER: John Steinbeck is an influential American writer. Can you tell me more about\nhis life and work?\nMOSHI: Sure, John Steinbeck was born on February 27th, 1902, in Salinas, California,\nand he died on December 20th, 1968, in New York City. He was one of the most\npopular writers of his time and is often considered a giant of American letters.\nUSER: And what are some of your most famous pieces?\nMOSHI: His most famous novel is probably The Grapes of Wrath, which won the\nPulitzer Prize. But other notable works include Of Mice and Men, The Red Pony,\nand East of Eden.\nUSER: And which themes"
+    }
+  ]
+}
